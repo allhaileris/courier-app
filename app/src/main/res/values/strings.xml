@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Курьер</string>
+    <string name="nav_map">Карта</string>
+    <string name="nav_profile">Профиль</string>
+    <string name="nav_tracks">История треков</string>
+    <string name="profile_title">Профиль</string>
+    <string name="courier_name">Иван Петров</string>
+    <string name="courier_role">Курьер</string>
+    <string name="rating_label">Рейтинг</string>
+    <string name="deliveries_label">Доставки</string>
+    <string name="status_label">Статус</string>
+    <string name="status_online">На линии</string>
+    <string name="location_permission_needed">Для работы приложения необходим доступ к геолокации</string>
+    <string name="grant_permission">Разрешить</string>
+
+    <!-- Экспорт треков -->
+    <string name="export_tracks">Экспортировать треки</string>
+    <string name="export_all_tracks">Все треки</string>
+    <string name="export_selected_tracks">Выбранные треки</string>
+    <string name="select_tracks_dialog_title">Выберите треки для экспорта</string>
+    <string name="export_success">Треки успешно экспортированы в файл tracks_export.json</string>
+    <string name="export_error">Ошибка при экспорте: %s</string>
+    <string name="save_file_dialog_title">Выберите место для сохранения</string>
+    <string name="track_export_filename">tracks_export.json</string>
+    <string name="no_tracks_selected">Не выбрано ни одного трека</string>
+</resources>

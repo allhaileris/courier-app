@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MapView">
+        <attr name="zoomButtonsVisible" format="boolean" />
+        <attr name="tileSource" format="string" />
+        <attr name="useDataConnection" format="boolean" />
+        <attr name="minZoomLevel" format="float" />
+        <attr name="maxZoomLevel" format="float" />
+    </declare-styleable>
+</resources>

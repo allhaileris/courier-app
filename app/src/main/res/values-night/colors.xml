@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Основные цвета -->
+    <color name="primary">#46395D</color>
+    <color name="primary_dark">#000000</color>
+    <color name="primary_light">#FFCE93D8</color>
+    
+    <!-- Акцентный цвет -->
+    <color name="accent">#FFFFAB40</color>
+    
+    <!-- Базовые цвета -->
+    <color name="white">#000000</color>
+    <color name="black">#FFFFFFFF</color>
+    
+    <!-- Серые оттенки -->
+    <color name="gray_light">#1C1C1C</color>
+    
+    <!-- Поверхности и тема -->
+    <color name="surface">#000000</color>
+    <color name="colorSurface">#000000</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="gray">#FF616161</color>
+    <color name="gray_dark">#FF9E9E9E</color>
+    
+    <!-- Цвета текста -->
+    <color name="text_primary">#FFFFFFFF</color>
+    <color name="text_secondary">#B3FFFFFF</color>
+    
+    <!-- Статусы и навигация -->
+    <color name="status_online">#FF4CAF50</color>
+    <color name="nav_selected">#FFFFFF</color>
+    <color name="nav_unselected">#B3FFFFFF</color>
+</resources>
