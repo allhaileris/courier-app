@@ -9,8 +9,6 @@ import android.graphics.ColorMatrixColorFilter
 import android.os.Build
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.view.animation.LinearInterpolator
-import android.view.animation.ScaleAnimation
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -63,9 +61,6 @@ class MapFragment : Fragment() {
     private var trackStartTime: Long = 0
     private var startMarker: Marker? = null
     private var endMarker: Marker? = null
-
-    // Анимация пульсации для иконки записи трека
-    private var pulseAnimation: ScaleAnimation? = null
 
     // Для отображения длительности записи
     private val durationTimer = Timer()
@@ -120,8 +115,6 @@ class MapFragment : Fragment() {
         setupZoomButtons()
         setupCommentButton()
         setupStartTrackButton()
-        initPulseAnimation()
-        applyPulseAnimationState(isRecordingTrack)
         checkAndRequestPermissions()
     }
 
@@ -187,36 +180,10 @@ class MapFragment : Fragment() {
         }
     }
 
-    private fun initPulseAnimation() {
-        pulseAnimation = ScaleAnimation(
-            1.0f, 1.2f, 1.0f, 1.2f,
-            Animation.RELATIVE_TO_SELF, 0.5f,
-            Animation.RELATIVE_TO_SELF, 0.5f
-        ).apply {
-            duration = 800
-            repeatCount = Animation.INFINITE
-            repeatMode = Animation.RESTART
-            interpolator = LinearInterpolator()
-            fillAfter = true
-        }
-    }
-
-    private fun applyPulseAnimationState(isRecording: Boolean) {
-        if (isRecording) {
-            pulseAnimation?.let { animation ->
-                binding.fabStartTrack.clearAnimation()
-                binding.fabStartTrack.startAnimation(animation)
-            }
-        } else {
-            binding.fabStartTrack.clearAnimation()
-        }
-    }
-
     private fun onTrackButtonClick() {
         if (isRecordingTrack) {
             isRecordingTrack = false
             binding.fabStartTrack.setImageResource(R.drawable.ic_start_track)
-            applyPulseAnimationState(false)
             stopDurationTimer()
 
             saveTrackToDatabase()
@@ -225,7 +192,6 @@ class MapFragment : Fragment() {
         } else {
             isRecordingTrack = true
             binding.fabStartTrack.setImageResource(R.drawable.ic_stop_track)
-            applyPulseAnimationState(true)
 
             trackPoints.clear()
             pendingComment = ""
@@ -581,8 +547,6 @@ class MapFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         fetchPointsJob?.cancel()
-        pulseAnimation = null
-        binding.fabStartTrack.clearAnimation()
         stopDurationTimer()
         _binding = null
     }
