@@ -197,8 +197,9 @@ class MapFragment : Fragment() {
             pendingComment = ""
             updateTrackLine()
 
-            // Add start marker at current location
-            addStartMarker()
+            // Remove old markers before starting new track
+            removeStartMarker()
+            removeEndMarker()
 
             trackStartTime = System.currentTimeMillis()
             startDurationTimer()
@@ -266,6 +267,9 @@ class MapFragment : Fragment() {
 
         if (isRecordingTrack) {
             trackPoints.add(point)
+            if (trackPoints.size == 1) {
+                addStartMarker()
+            }
             updateTrackLine()
         }
 
@@ -475,7 +479,7 @@ class MapFragment : Fragment() {
 
     private fun addStartMarker() {
         startMarker = Marker(binding.mapView).apply {
-            position = trackPoints.firstOrNull() ?: GeoPoint(0.0, 0.0)
+            position = trackPoints.firstOrNull()
             setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
             title = "Старт"
             icon = ContextCompat.getDrawable(
@@ -499,6 +503,22 @@ class MapFragment : Fragment() {
         }
         binding.mapView.overlays.add(endMarker!!)
         binding.mapView.invalidate()
+    }
+
+    private fun removeStartMarker() {
+        startMarker?.let { marker ->
+            binding.mapView.overlays.remove(marker)
+            binding.mapView.invalidate()
+            startMarker = null
+        }
+    }
+
+    private fun removeEndMarker() {
+        endMarker?.let { marker ->
+            binding.mapView.overlays.remove(marker)
+            binding.mapView.invalidate()
+            endMarker = null
+        }
     }
 
     private fun startDurationTimer() {
@@ -548,6 +568,8 @@ class MapFragment : Fragment() {
         super.onDestroyView()
         fetchPointsJob?.cancel()
         stopDurationTimer()
+        removeStartMarker()
+        removeEndMarker()
         _binding = null
     }
 }
